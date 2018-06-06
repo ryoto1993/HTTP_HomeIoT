@@ -4,6 +4,9 @@
     <string name="title_color">Color</string>
     <string name="menu_setting">Setting</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="label_R">R</string>
+    <string name="label_G">G</string>
+    <string name="label_B">B</string>
 
     <string name="btn_on">TURN ON</string>
     <string name="btn_off">TURN OFF</string>

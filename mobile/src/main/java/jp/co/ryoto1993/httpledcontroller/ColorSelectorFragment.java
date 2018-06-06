@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 
 /**
@@ -17,8 +19,10 @@ import android.view.ViewGroup;
  * Use the {@link ColorSelectorFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ColorSelectorFragment extends Fragment {
+public class ColorSelectorFragment extends Fragment implements SeekBar.OnSeekBarChangeListener {
     private OnFragmentInteractionListener mListener;
+
+    SeekBar seekBarRed, seekBarGreen, seekBarBlue;
 
     public ColorSelectorFragment() {
         // Required empty public constructor
@@ -46,8 +50,21 @@ public class ColorSelectorFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_color_selector, container, false);
+
+        seekBarRed = rootView.findViewById(R.id.seekBarRed);
+        seekBarRed.setOnSeekBarChangeListener(this);
+
+        seekBarGreen = rootView.findViewById(R.id.seekBarGreen);
+        seekBarGreen.setOnSeekBarChangeListener(this);
+
+        seekBarBlue = rootView.findViewById(R.id.seekBarBlue);
+        seekBarBlue.setOnSeekBarChangeListener(this);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_color_selector, container, false);
+        return rootView;
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -74,6 +91,37 @@ public class ColorSelectorFragment extends Fragment {
         mListener = null;
     }
 
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+        TextView textView = null;
+        switch (seekBar.getId()) {
+            case R.id.seekBarRed:
+                textView = getActivity().findViewById(R.id.labelRedValue);
+                break;
+            case R.id.seekBarGreen:
+                textView = getActivity().findViewById(R.id.labelGreenValue);
+                break;
+            case R.id.seekBarBlue:
+                textView = getActivity().findViewById(R.id.labelBlueValue);
+                break;
+        }
+        if (textView != null) {
+            textView.setText(String.valueOf(i));
+        }
+        
+        mListener.onColorChanged(seekBarRed.getProgress(), seekBarGreen.getProgress(), seekBarBlue.getProgress());
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -87,5 +135,8 @@ public class ColorSelectorFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onColorSelectorFragmentInteraction(Uri uri);
+
+        void onColorChanged(int r, int g, int b);
+
     }
 }

@@ -17,9 +17,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import com.cengalabs.flatui.FlatUI;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements
         ModeSelectorFragment.OnFragmentInteractionListener,
@@ -111,10 +115,29 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
+    @Override
+    public void onColorChanged(int r, int g, int b) {
+        String mode = "set_rgb";
+        JSONObject json = new JSONObject();
+        JSONObject dataobj = new JSONObject();
+
+        try {
+            json.put("mode", mode);
+            dataobj.put("R", r);
+            dataobj.put("G", g);
+            dataobj.put("B", b);
+            json.put("data", dataobj);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        send("POST", json.toString());
+    }
+
+
     public void sendTrigger(View view) {
         String mode = null;
-        String data = null;
-        JSONObject json = null;
+        JSONObject json = new JSONObject();
 
         switch (view.getId()) {
             case R.id.btn_on:
@@ -125,7 +148,6 @@ public class MainActivity extends AppCompatActivity implements
                 break;
         }
 
-        json = new JSONObject();
         try {
             json.put("mode", mode);
         } catch (JSONException e) {
@@ -150,4 +172,5 @@ public class MainActivity extends AppCompatActivity implements
         });
         http.execute(url, method, json);
     }
+
 }
