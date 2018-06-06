@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="network_allow_global">network_allow_global</string>
+    <string name="network_lan_ip">network_lan_ip</string>
+    <string name="network_wan_ip">network_wan_ip</string>
+    <string name="network_wan_port">network_wan_port</string>
+</resources>

@@ -1,0 +1,23 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- A 'parent' preference, which enables/disables child preferences (below)
+         when checked/unchecked. -->
+    <SwitchPreference
+            android:key="@string/network_allow_global"
+            android:title="@string/pref_title_allow_global"
+            android:defaultValue="false"/>
+
+    <EditTextPreference
+            android:key="network_lan_ip"
+            android:title="@string/pref_title_lan_ip"/>
+    <EditTextPreference
+            android:dependency="network_allow_global"
+            android:key="network_wan_ip"
+            android:title="@string/pref_title_wan_ip"/>
+    <EditTextPreference
+            android:dependency="network_allow_global"
+            android:key="network_wan_port"
+            android:title="@string/pref_title_wan_port"/>
+
+
+</PreferenceScreen>

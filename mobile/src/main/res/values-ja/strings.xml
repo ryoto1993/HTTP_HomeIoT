@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">LEDテープコントローラ</string>
+    <string name="title_mode">モード</string>
+    <string name="title_color">カラー</string>
+    <string name="menu_setting">設定</string>
+</resources>
