@@ -8,7 +8,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class HTTPcontroller extends AsyncTask<String, Void, String> {
+public class HttpSender extends AsyncTask<String, Void, String> {
 
     private Listener listener;
 

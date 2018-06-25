@@ -13,17 +13,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Fade;
 import android.transition.TransitionSet;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.SeekBar;
-import android.widget.TextView;
 import com.cengalabs.flatui.FlatUI;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Locale;
+
 
 public class MainActivity extends AppCompatActivity implements
         ModeSelectorFragment.OnFragmentInteractionListener,
@@ -163,8 +160,8 @@ public class MainActivity extends AppCompatActivity implements
                 + sp.getString(getString(R.string.network_lan_ip), "localhost")
                 + ":8080";
 
-        HTTPcontroller http = new HTTPcontroller();
-        http.setListener(new HTTPcontroller.Listener() {
+        HttpSender http = new HttpSender();
+        http.setListener(new HttpSender.Listener() {
             @Override
             public void onSuccess(String result) {
 
